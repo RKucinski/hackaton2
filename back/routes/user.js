@@ -16,7 +16,7 @@ router.get('/:id', function (req, res, next) {
   .populate('equipment.programID')
   .exec()
   .then(function (data) {
-    res.send(data)
+    res.json(data)
   })
 })
 

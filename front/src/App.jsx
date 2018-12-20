@@ -12,24 +12,29 @@ import Home from './components/Home';
 import BottomNav from './components/BottomNav';
 // import UserProfile from './components/UserProfile';
 // import UserParameter from './components/UserParameter';
+import UserContext from './context/UserContext'
+import UserProvider from './context/UserContext';
 
-class App extends Component{
+class App extends Component {
   render() {
-    return(
-  <div className="App">
-    <Switch>
-      {/* <Route exact path="/" component={Accroche} /> */}
-      <Route exact path="/auth" component={Auth} />
-      <Route exact path="/signUp" component={SignUp} />
-      {/* <Route exact path="/stats" component={Stats} /> */}
-      <Route exact path="/equipments" component={Equipments} />
-      <Route exact path="/equipments/detail" component={DetailEquipment} />
-      <Route exact path="/home" component={Home}/>
-      {/* <Route exact path="/userprofile" component={UserProfile} /> */}
-      {/* <Route exact path="/userparameter" component={UserParameter} /> */}
-    </Switch>
-  </div>
-    )}
+    return (
+      <div className="App">
+        <Switch>
+          <UserProvider>
+            {/* <Route exact path="/" component={Accroche} /> */}
+            <Route exact path="/auth" component={Auth} />
+            <Route exact path="/signUp" component={SignUp} />
+            {/* <Route exact path="/stats" component={Stats} /> */}
+            <Route exact path="/equipments" component={Equipments} />
+            <Route exact path="/equipments/detail" component={DetailEquipment} />
+            <Route exact path="/home" component={Home} />
+            {/* <Route exact path="/userprofile" component={UserProfile} /> */}
+            {/* <Route exact path="/userparameter" component={UserParameter} /> */}
+          </UserProvider>
+        </Switch>
+      </div>
+    )
+  }
 }
 
 export default App;

@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-class componentName extends Component {
+class DetailEquipment extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,4 +38,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName;
+export default DetailEquipment;

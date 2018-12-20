@@ -1,12 +1,14 @@
+/* eslint-disabled */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import DetailEquipment from './DetailEquipment';
 import BottomNav from './BottomNav';
+import { withUser } from '../context/UserContext';
 
 const styles = theme => ({
   root: {
@@ -25,11 +27,17 @@ const styles = theme => ({
 class Equipments extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      mapsList: [],
+    };
   }
 
-  renderEquipments = () => {
-    axios.get()
+  displayEquipment = (itemsArray) => {
+    let array = []
+    itemsArray.map(item => {
+      array.push(<DetailEquipment item={item} />)
+    })
+    return array
   }
 
   render() {
@@ -37,7 +45,7 @@ class Equipments extends Component {
     return (
       <div className={classes.root}>
         <List component="nav">
-          {this.renderEquipments()}
+          {(this.props.userData.key === "nope") ? console.log('ternaire' + this.props.userData) : this.displayEquipment(this.props.userData.equipment)}
         </List>
         <Fab color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
@@ -52,4 +60,5 @@ Equipments.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Equipments);
+export default withUser(withStyles(styles)(Equipments));
+
