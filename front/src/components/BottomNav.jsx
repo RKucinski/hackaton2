@@ -28,7 +28,7 @@ const styles = {
 
 // End Declaration
 
-class Home extends Component {
+class BottomNav extends Component {
   constructor(props) {
 		super(props);
 		this.state = {
@@ -66,6 +66,6 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = { classes: PropTypes.object.isRequired };
+BottomNav.propTypes = { classes: PropTypes.object.isRequired };
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(BottomNav);
