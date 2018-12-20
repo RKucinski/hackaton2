@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 /*eslint-disable*/
 
@@ -11,7 +11,9 @@ import DetailEquipment from './components/DetailEquipment';
 // import UserProfile from './components/UserProfile';
 // import UserParameter from './components/UserParameter';
 
-export const App = () => (
+class App extends Component{
+  render() {
+    return(
   <div className="App">
     <Switch>
       {/* <Route exact path="/" component={Accroche} /> */}
@@ -24,5 +26,7 @@ export const App = () => (
       {/* <Route exact path="/userparameter" component={UserParameter} /> */}
     </Switch>
   </div>
-);
+    )}
+}
 
+export default App;
