@@ -2,11 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
 import {
 	TextField, Button, Snackbar, CardMedia, CardContent, Card,
 } from '@material-ui/core';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // Css Material UI
 const styles = theme => ({
@@ -50,6 +50,9 @@ const styles = theme => ({
 	menuButton: {
 		marginLeft: -12,
 		marginRight: 20,
+	},
+	link: {
+		textDecoration: 'none',
 	},
 });
 
@@ -151,6 +154,7 @@ class SignUp extends Component {
 									message={<span>{this.state.flash}</span>}
 								/>
 							</CardContent>
+							<Link to = '/Home' className={classes.link}>
 							<Button
 								variant="contained"
 								color="primary"
@@ -159,6 +163,7 @@ class SignUp extends Component {
 							>
 								M'inscrire
 							</Button>
+							</Link>
 						</div>
 					</Card>
 				</div>

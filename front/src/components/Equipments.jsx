@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -17,6 +18,7 @@ const styles = theme => ({
   },
   fab: {
     margin: theme.spacing.unit,
+    backgroundColor: '#66cccc'
   },
   extendedIcon: {
     marginRight: theme.spacing.unit,
@@ -45,7 +47,6 @@ class Equipments extends Component {
             <AddIcon />
           </Link>
         </Fab>
-        <BottomNav />
       </div>
     );
   }
