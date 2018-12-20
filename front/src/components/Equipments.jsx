@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 class Equipments extends Component {
   render() {
-    return <div>blabla</div>;
+    return <div />;
   }
 }
 
