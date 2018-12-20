@@ -3,6 +3,7 @@ const router = express.Router()
 const Login = require('../models/loginsModel')
 
 router.post('/new', function (req, res, next) {
+  console.log("req in back ", req)
   Login.create(req.body).then(function (data) {
     res.send(data)
   }).catch(next)

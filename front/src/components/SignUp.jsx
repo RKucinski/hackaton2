@@ -2,15 +2,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Redirect } from 'react-router-dom';
 import {
-	TextField,
-	Button,
-	Snackbar,
-	CardMedia,
-	CardContent,
-	Card,
+	TextField, Button, Snackbar, CardMedia, CardContent, Card,
 } from '@material-ui/core';
-
+import axios from 'axios';
 
 // Css Material UI
 const styles = theme => ({
@@ -61,46 +57,50 @@ class SignUp extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: '',
-			password: '',
+			user:{
+				email: '',
+				password: '',
+			},
 			flash: '',
 			open: false,
 		};
 		this.onChange = this.onChange.bind(this);
+		// console.log("constructor de signup")
 	}
 
 	// Fonction du component
 
 	handleSubmit = () => {
-		fetch('/auth/signup', {
-			method: 'POST',
-			headers: new Headers({
-				'Content-Type': 'application/json',
-			}),
-			body: JSON.stringify(this.state),
-		})
-			.then(res => res.json())
+		console.log("post this.state.user")
+		axios.post('api/login/new', this.state.user)
+			// .then(res => console.log(res))
 			.then(
-				res => this.setState({ flash: res.flash, open: true }),
-				err => this.setState({ flash: err.flash, open: true })
+				res => {
+					console.log(res);
+					this.setState({ flash: res.flash, open: true })
+					this.redirect()
+				}
 			);
-
-		window.location = '/profile';
 	};
+
+	redirect = () => {
+		console.log("redirect");
+		this.props.history.push('/equipments')
+	}
 
 	onChange = e => {
 		this.setState({
-			[e.target.name]: e.target.value,
+			...this.state,
+			user:{
+				...this.state.user,
+				[e.target.name]: e.target.value,
+			},
 		});
 	};
 
 	handleClose = (event, reason) => {
 		this.setState({ open: false });
 	};
-
-	connect() {
-		window.location = '/';
-	}
 
 	render() {
 		const { classes } = this.props;
@@ -123,7 +123,7 @@ class SignUp extends Component {
 									placeholder="E-mail"
 									id="Email"
 									onChange={this.onChange}
-									value={this.state.email}
+									value={this.state.user.email}
 								/>
 								<br />
 								<br />
@@ -134,7 +134,7 @@ class SignUp extends Component {
 									label="Mot de passe"
 									placeholder="Mot de passe"
 									onChange={this.onChange}
-									value={this.state.password}
+									value={this.state.user.password}
 								/>
 								<br />
 								<br />

@@ -9,11 +9,11 @@ const EquipmentSchema = new Schema({
   },
   brand: {
     type: String,
-    required: [true, 'Lastname is required']
+    required: [true, 'brand is required']
   },
   model: {
     type: String,
-    required: [true, 'Pseudo is required']
+    required: [true, 'model is required']
   },
 });
 
