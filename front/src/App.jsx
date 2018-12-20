@@ -2,14 +2,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 /*eslint-disable*/
 
-import Accroche from './components/Accroche';
-import Stats from './components/Stats';
+// import Accroche from './components/Accroche';
+// import Stats from './components/Stats';
 import Equipments from './components/Equipments';
 import Auth from './components/Auth';
 import Signup from './components/Signup';
 import DetailEquipment from './components/DetailEquipment';
-import UserProfile from './components/UserProfile';
-import UserParameter from './components/UserParameter';
+// import UserProfile from './components/UserProfile';
+// import UserParameter from './components/UserParameter';
 
 export const App = () => (
   <div className="App">
