@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
-const router = express.Router();
 const bodyParser = require('body-parser');
 const dbConnect = require('./config/db');
 
@@ -20,7 +19,6 @@ mongoose.connect(dbConnect.url, {
   console.log('Connect on : ' + dbConnect.url );
 });
 
-//Body Parser
 //Body Parser
 var urlencodedParser = bodyParser.urlencoded({
   extended: true
@@ -49,7 +47,12 @@ app.use(function (req, res, next) {
 
 //Routes
 
-app.use('/index.js', require('./routes/index.js'));
+app.use('/api/equipement', require('./routes/equipment'));
+app.use('/api/login', require('./routes/login'));
+app.use('/api/home', require('./routes/home'));
+app.use('/api/supplier', require('./routes/supplier'));
+app.use('/api/program', require('./routes/program'));
+app.use('/api/user', require('./routes/user'));
 
 
 //On implémente un middleware pour nos messages d'erreur
