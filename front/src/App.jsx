@@ -11,7 +11,7 @@ import DetailEquipment from './components/DetailEquipment';
 import UserProfile from './components/UserProfile';
 import UserParameter from './components/UserParameter';
 
-export const Equipements = () => (
+export const App = () => (
   <div className="App">
     <Switch>
       <Route exact path="/" component={Accroche} />
