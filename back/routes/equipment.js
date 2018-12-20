@@ -14,15 +14,15 @@ router.post('/', function (req, res, next) {
   }).catch(next)
 })
 
-// router.put('/:id', function (req, res, next) {
-//   Equipment.findByIdAndUpdate({ _id: req.params.id }, req.body)
-//     .then(function () {
-//       Equipment.findOne({ _id: req.params.id })
-//         .then(function (data) {
-//           res.send(data)
-//         })
-//     }).catch(next)
-// })
+router.put('/:id', function (req, res, next) {
+  Equipment.findOneAndUpdate({ _id: req.params.id }, req.body)
+    .then(function () {
+      Equipment.findOne({ _id: req.params.id })
+        .then(function (data) {
+          res.send(data)
+        })
+    }).catch(next)
+})
 
 
 module.exports = router

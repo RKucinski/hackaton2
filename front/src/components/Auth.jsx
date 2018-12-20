@@ -87,7 +87,8 @@ class Auth extends Component {
 	};
 
 	send() {
-		window.location = '/signup';
+		// A remplacer par redirect <Redirect to="/admin/login" />
+		// window.location = '/signup';
 	}
 
 	render() {
