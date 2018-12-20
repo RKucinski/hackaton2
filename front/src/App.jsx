@@ -8,6 +8,8 @@ import Equipments from './components/Equipments';
 import Auth from './components/Auth';
 import SignUp from './components/SignUp';
 import DetailEquipment from './components/DetailEquipment';
+import Home from './components/Home';
+import BottomNav from './components/BottomNav';
 // import UserProfile from './components/UserProfile';
 // import UserParameter from './components/UserParameter';
 
@@ -22,6 +24,7 @@ class App extends Component{
       {/* <Route exact path="/stats" component={Stats} /> */}
       <Route exact path="/equipments" component={Equipments} />
       <Route exact path="/equipments/detail" component={DetailEquipment} />
+      <Route exact path="/home" component={Home}/>
       {/* <Route exact path="/userprofile" component={UserProfile} /> */}
       {/* <Route exact path="/userparameter" component={UserParameter} /> */}
     </Switch>
