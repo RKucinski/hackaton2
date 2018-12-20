@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -5,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import DetailEquipment from './DetailEquipment';
 import BottomNav from './BottomNav';
 
 const styles = theme => ({
@@ -16,6 +16,7 @@ const styles = theme => ({
   },
   fab: {
     margin: theme.spacing.unit,
+    backgroundColor: '#66cccc'
   },
   extendedIcon: {
     marginRight: theme.spacing.unit,
@@ -42,7 +43,6 @@ class Equipments extends Component {
         <Fab color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
         </Fab>
-        <BottomNav />
       </div>
     );
   }
