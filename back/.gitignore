@@ -1,0 +1,5 @@
+#config BDD
+/config.js
+
+# dependencies
+/node_modules
