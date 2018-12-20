@@ -11,8 +11,9 @@ import DetailEquipment from './components/DetailEquipment';
 import Home from './components/Home';
 // import UserProfile from './components/UserProfile';
 // import UserParameter from './components/UserParameter';
+import EquipmentInfo from './components/EquipmentInfo';
 
-class App extends Component{
+class App extends Component {
   render() {
     return(
   <div className="App">
@@ -26,6 +27,7 @@ class App extends Component{
       <Route exact path="/home" component={Home}/>
       {/* <Route exact path="/userprofile" component={UserProfile} /> */}
       {/* <Route exact path="/userparameter" component={UserParameter} /> */}
+      <Route exact path="/equipment/info" component={EquipmentInfo} />
     </Switch>
   </div>
     )}

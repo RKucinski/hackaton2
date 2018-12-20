@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+/*eslint-disable*/
 import Grid from '@material-ui/core/Grid';
 
-class componentName extends Component {
+class DetailEquipment extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +13,7 @@ class componentName extends Component {
     };
   }
 
-  handleChange = name => (event) => {
+  handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
 
@@ -38,4 +39,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName;
+export default DetailEquipment;
