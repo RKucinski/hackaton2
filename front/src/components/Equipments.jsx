@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { Link } from 'react-router-dom';
 import DetailEquipment from './DetailEquipment';
 import BottomNav from './BottomNav';
 import { withUser } from '../context/UserContext';
@@ -18,6 +19,7 @@ const styles = theme => ({
   },
   fab: {
     margin: theme.spacing.unit,
+    backgroundColor: '#66cccc'
   },
   extendedIcon: {
     marginRight: theme.spacing.unit,
@@ -48,16 +50,17 @@ class Equipments extends Component {
           {(this.props.userData.key === "nope") ? console.log('ternaire' + this.props.userData) : this.displayEquipment(this.props.userData.equipment)}
         </List>
         <Fab color="primary" aria-label="Add" className={classes.fab}>
-          <AddIcon />
+          <Link to="/equipment/info">
+            <AddIcon />
+          </Link>
         </Fab>
-        <BottomNav />
       </div>
     );
   }
 }
 
 Equipments.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 export default withUser(withStyles(styles)(Equipments));
