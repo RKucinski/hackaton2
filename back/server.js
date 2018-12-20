@@ -48,6 +48,8 @@ app.use(function (req, res, next) {
 //Routes
 
 app.use('/api/equipement', require('./routes/equipment'));
+app.use('/api/supplier', require('./routes/supplier'));
+app.use('/api/program', require('./routes/program'));
 
 
 //On implémente un middleware pour nos messages d'erreur
