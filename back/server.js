@@ -50,6 +50,7 @@ app.use(function (req, res, next) {
 app.use('/api/equipement', require('./routes/equipment'));
 app.use('/api/supplier', require('./routes/supplier'));
 app.use('/api/program', require('./routes/program'));
+app.use('/api/user', require('./routes/user'));
 
 
 //On implémente un middleware pour nos messages d'erreur
