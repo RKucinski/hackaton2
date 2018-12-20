@@ -71,9 +71,7 @@ class SignUp extends Component {
 	// Fonction du component
 
 	handleSubmit = () => {
-		console.log("post this.state.user")
 		axios.post('api/login/new', this.state.user)
-			// .then(res => console.log(res))
 			.then(
 				res => {
 					console.log(res);
@@ -84,7 +82,6 @@ class SignUp extends Component {
 	};
 
 	redirect = () => {
-		console.log("redirect");
 		this.props.history.push('/equipments')
 	}
 
