@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -20,75 +20,87 @@ const styles = theme => ({
   },
 });
 
-class EquipmentInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+class EquipmentInfo extends React.Component {
+  state = {
+    type: '',
+    marque: '',
+    modele: '',
+  };
 
-  handleChange = name => (event) => {
-    this.setState({ [name]: event.target.value });
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     const { classes } = this.props;
-    const { age, labelWidth } = this.state;
-    return (
-      <div className={classes.root}>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel
-            ref={(ref) => {
-              this.InputLabelRef = ref;
-            }}
-            htmlFor="outlined-age-native-simple"
-          >
-            Type
-          </InputLabel>
-          <Select
-            native
-            value={age}
-            onChange={this.handleChange('age')}
-            input={
-              <OutlinedInput name="age" labelWidth={labelWidth} id="outlined-age-native-simple" />
-            }
-          >
-            <option value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
-          </Select>
-        </FormControl>
+    const { type, marque, modele } = this.state;
 
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel
-            ref={(ref) => {
-              this.InputLabelRef = ref;
-            }}
-            htmlFor="outlined-age-native-simple"
-          >
-            Marque
-          </InputLabel>
+    return (
+      <form className={classes.root} autoComplete="off">
+        {/* Type de l'équipement */}
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="type-simple">Type</InputLabel>
           <Select
-            native
-            value={age}
-            onChange={this.handleChange('age')}
-            input={
-              <OutlinedInput name="age" labelWidth={labelWidth} id="outlined-age-native-simple" />
-            }
+            value={type}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'type',
+              id: 'type-simple',
+            }}
           >
-            <option value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
-      </div>
+        {/* Marque de l'équipement */}
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="marque-simple">Marque</InputLabel>
+          <Select
+            value={marque}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'marque',
+              id: 'marque-simple',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+        {/* Modèle de l'équipement */}
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="modele-simple">Age</InputLabel>
+          <Select
+            value={modele}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'modele',
+              id: 'modele-simple',
+            }}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+      </form>
     );
   }
 }
 
 EquipmentInfo.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(EquipmentInfo);
