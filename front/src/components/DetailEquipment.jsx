@@ -3,6 +3,7 @@ import Switch from '@material-ui/core/Switch';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 /*eslint-disable*/
+import Grid from '@material-ui/core/Grid';
 
 class DetailEquipment extends Component {
   constructor(props) {
@@ -19,17 +20,21 @@ class DetailEquipment extends Component {
   render() {
     const { checkedB } = this.state;
     return (
-      <div>
-        <ListItem button>
-          <ListItemText primary="Machine à laver" />
-        </ListItem>
-        <Switch
-          checked={checkedB}
-          onChange={this.handleChange('checkedB')}
-          value="checkedB"
-          color="primary"
-        />
-      </div>
+      <Grid container>
+        <Grid item xs={9}>
+          <ListItem button>
+            <ListItemText primary="Machine à laver" />
+          </ListItem>
+        </Grid>
+        <Grid item xs={3}>
+          <Switch
+            checked={checkedB}
+            onChange={this.handleChange('checkedB')}
+            value="checkedB"
+            color="primary"
+          />
+        </Grid>
+      </Grid>
     );
   }
 }

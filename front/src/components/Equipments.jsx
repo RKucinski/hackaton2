@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Fab from '@material-ui/core/Fab';
@@ -28,12 +29,16 @@ class Equipments extends Component {
     this.state = {};
   }
 
+  renderEquipments = () => {
+    axios.get()
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
         <List component="nav">
-          <DetailEquipment />
+          {this.renderEquipments()}
         </List>
         <Fab color="primary" aria-label="Add" className={classes.fab}>
           <Link to="/equipment/info">
