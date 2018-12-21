@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import EquipmentProgram from './EquipmentProgram';
 import Axios from 'axios';
 import QrCodeScan from './QrCodeScan';
 
@@ -34,6 +35,7 @@ class EquipmentInfo extends React.Component {
       modele: '',
       checkedQrCode: false,
       equipments: [],
+      days: []
     };
     this.getEquipments();
   }
@@ -42,6 +44,11 @@ class EquipmentInfo extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  setDays = (newdata) => {
+    this.setState({
+      days: newdata
+    })
+  }
   handleChangeQrCode = () => {
     this.setState(state => ({ checkedQrCode: !state.checkedQrCode }));
     // mediaStream.stop();
@@ -61,6 +68,7 @@ class EquipmentInfo extends React.Component {
     const { type, marque, modele, checkedQrCode, equipments } = this.state;
 
     return (
+      <React.Fragment>
       <div>
         <h2>Je souhaite scanner grâce aux QR codes</h2>
         <Switch checked={checkedQrCode} onChange={this.handleChangeQrCode} aria-label="Collapse" />
@@ -126,6 +134,10 @@ class EquipmentInfo extends React.Component {
           </FormControl>
         </form>
       </div>
+        <div>
+          <EquipmentProgram {...this.props} setDate={this.setDays} />
+        </div>
+      </React.Fragment>
     );
   }
 }
