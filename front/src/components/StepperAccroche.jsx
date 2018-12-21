@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,33 +8,46 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-
+import CardMedia from '@material-ui/core/CardMedia';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-
+import { Link } from 'react-router-dom';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const stepperContent = [
     {
-      label: 'San Francisco – Oakland Bay Bridge, United States',
+      label: 'Réduisez vos dépenses en éléctricté !',
       imgPath:
-        'https://www.funeraire-info.fr/wp-content/uploads/2017/02/%C3%A9cologie.jpg',
+        'http://image.noelshack.com/fichiers/2018/51/5/1545390319-euro.png',
+  
     },
     {
-      label: 'Bird',
+      label: 'Tout en pensant à la planète !',
       imgPath:
-        'https://old.atomberg.com/wp-content/uploads/2016/04/energy_efficiency.jpg',
+      'http://image.noelshack.com/fichiers/2018/51/5/1545390316-planet-earth.png',
     },
     {
-      label: 'Bali, Indonesia',
+      label: 'HomEco vous accompagne dans votre sobriété numérique !',
       imgPath:
-        'https://www.corpgov.net/wp-content/uploads/2014/10/green-investing.jpeg',
+        'http://image.noelshack.com/fichiers/2018/51/5/1545390313-plug.png',
     },
   ];
   
   const styles = theme => ({
     root: {
-      maxWidth: 400,
+      margin: 'auto',
+      maxWidth: 300,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      flexGrow: 1,
+    },
+    rootBis: {
+      margin: 'auto',
+      maxWidth: 300,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
       flexGrow: 1,
     },
     header: {
@@ -45,9 +59,23 @@ const stepperContent = [
     },
     img: {
       maxHeight: 255,
+      marginBottom:25,
       maxWidth: 400,
       overflow: 'hidden',
       display: 'block',
+    },
+    media: {
+      marginTop: 30,
+      marginBottom: -90,
+      height: 210,
+    },
+    button: {
+      width: 100,
+      marginBottom: 20,
+      backgroundColor: '#38b301',
+    },
+    link: {
+      textDecoration: 'none',
     },
   });
 
@@ -81,7 +109,8 @@ class StepperAccroche extends Component {
 
     return (
       <div className={classes.root}>
-        
+      <CardMedia className={classes.media} image="http://image.noelshack.com/fichiers/2018/51/5/1545391890-logo-titre.png" title="image" />
+      <br/>
         <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
@@ -93,7 +122,7 @@ class StepperAccroche extends Component {
               {Math.abs(activeStep - index) <= 2 ? (
                 <img className={classes.img} src={step.imgPath} alt={step.label} />
               ) : null}
-            </div>
+            </div> 
           ))}
         </AutoPlaySwipeableViews>
         <Paper square elevation={0} className={classes.header}>
@@ -118,6 +147,19 @@ class StepperAccroche extends Component {
             </Button>
           }
         />
+        <div className={classes.rootBis}>
+        {activeStep === 2 ? 
+            <Link to = '/signUp' className={classes.link}>
+            <Button
+								variant="contained"
+								color="primary"
+								className={classes.button}
+							>
+								M'inscrire
+							</Button>
+              </Link> : null
+          }
+          </div>
       </div>
     );
   }

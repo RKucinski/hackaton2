@@ -6,64 +6,82 @@ import { withStyles } from '@material-ui/core/styles';
 // Components MaterialUi
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-
+import Timeline from '@material-ui/icons/Timeline';
+import Home from '@material-ui/icons/Home';
+import Weekend from '@material-ui/icons/Weekend';
+import Settings from '@material-ui/icons/Settings';
+import Equipments from './Equipments';
+import ParamsUser from './ParamsUser';
+import Stats from './Stats';
+import FirstPage from './FirstPage';
 
 // Declaration style MaterialUI
 
 const styles = {
-  home: {
-    display: 'flex',
-    justifyContent: 'space-around',
-  },
+	home: {
+		display: 'flex',
+		justifyContent: 'space-around',
+	},
 
-  root: {
-    position: 'fixed',
-    bottom: 5,
-    width: 350,
-  },
+	root: {
+		position: 'fixed',
+		bottom: 0,
+		heigth: 25,
+		width: 350,
+	},
 };
 
 // End Declaration
 
 class BottomNav extends Component {
-  constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
-      value: 0,
-    };
-  }
-  
-  // Function MaterialUI
+			value: 1,
+			stats: false,
+			equipments: false,
+			params: false,
+			home: true,
+		};
+	}
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+	// Function MaterialUI
 
-  // End Function
+	handleChange = (event, value) => {
+		this.setState({ value });
+	};
 
-  render() {
+// Function change view page Home with the BottomNavSwitch : Page Stats
 
-    const { classes } = this.props;
-    const { value } = this.state;
+	handleClick = (value) => {
+		this.setState({
+			stats: false,
+			params: false,
+			equipments: false,
+			home:false,
+			[value]: true,
+		})
+	}
 
-    return (
-      <div className={classes.home}>
-        <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
-        showLabels
-        className={classes.root}
-      >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-      </BottomNavigation>
-      </div>
-    );
-  }
+	render() {
+		const { classes } = this.props;
+		const { value } = this.state;
+
+		return (
+			<div className={classes.home}>
+				{this.state.stats && <Stats />}
+				{this.state.home && <FirstPage />}
+				{this.state.equipments && <Equipments />}
+				{this.state.params && <ParamsUser />}
+				<BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.root}>
+					<BottomNavigationAction  onClick={()=>this.handleClick('stats')} label="Stats" icon={<Timeline />} />
+					<BottomNavigationAction  onClick={()=>this.handleClick('home')} label="Home" icon={<Home />} />
+					<BottomNavigationAction onClick={()=>this.handleClick('equipments')} label="Equipment" icon={<Weekend />} />
+					<BottomNavigationAction onClick={()=>this.handleClick('params')} label="Params" icon={<Settings />} />
+				</BottomNavigation>
+			</div>
+		);
+	}
 }
 
 BottomNav.propTypes = { classes: PropTypes.object.isRequired };

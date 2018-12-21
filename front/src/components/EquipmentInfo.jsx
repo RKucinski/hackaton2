@@ -1,15 +1,26 @@
-import React, { Component } from 'react';
+/*eslint-disable*/
+
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Switch } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import axios from 'axios';
+import QrCodeScan from './QrCodeScan';
+import EquipmentProgram from './EquipmentProgram';
+import {
+	TextField, Button, Snackbar, CardMedia, CardContent, Card,
+} from '@material-ui/core';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    fontSize: 12,
+    
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -20,75 +31,166 @@ const styles = theme => ({
   },
 });
 
-class EquipmentInfo extends Component {
+class EquipmentInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      equipement:{
+        type: '',
+        brand: '',
+        model: '',
+      },
+      checkedQrCode: false,
+      equipments: [],
+      days: []
+    };
+    this.getEquipments();
   }
 
-  handleChange = name => (event) => {
-    this.setState({ [name]: event.target.value });
+  handleChange = event => {
+    this.setState({ 
+      equipement:{
+        ...this.state.equipement,
+        [event.target.name]: event.target.value,
+      }
+    });
   };
+
+  setDays = (newdata) => {
+    this.setState({
+      days: newdata
+    })
+  }
+  handleChangeQrCode = () => {
+    this.setState(state => ({ checkedQrCode: !state.checkedQrCode }));
+    // mediaStream.stop();
+  };
+
+  getEquipments = () => {
+    axios.get('/api/equipement/all').then(response => {
+      this.setState({
+        ...this.state,
+        equipments: response.data,
+      });
+    });
+  };
+
+  displayEquipmentType = () => {
+    let equipmentsType = [];
+    this.state.equipments.map(equipment => {
+      if(equipmentsType.indexOf(equipment.type) < 0) equipmentsType.push(equipment.type);
+    })
+    return equipmentsType.map(type => (
+      <MenuItem value={type}>{type}</MenuItem>
+    ))
+  }
+
+  displayEquipmentBrand = () => {
+    let equipmentsBrand = [];
+    this.state.equipments.map(equipment => {
+      if(equipment.type === this.state.equipement.type) equipmentsBrand.push(equipment.brand);
+    })
+    return equipmentsBrand.map(brand => (
+      <MenuItem value={brand}>{brand}</MenuItem>
+    ))
+  }
+
+  displayEquipmentModel = () => {
+    let equipmentsModel = [];
+    this.state.equipments.map(equipment => {
+      if(equipment.type === this.state.equipement.type && equipment.brand === this.state.equipement.brand) equipmentsModel.push(equipment.model);
+    })
+    return equipmentsModel.map(model => (
+      <MenuItem value={model}>{model}</MenuItem>
+    ))
+  }
+
+  submitEqpt = () => {
+    this.props.history.push('/equipments')
+  }
 
   render() {
     const { classes } = this.props;
-    const { age, labelWidth } = this.state;
+    const { checkedQrCode } = this.state;
+
     return (
       <div className={classes.root}>
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel
-            ref={(ref) => {
-              this.InputLabelRef = ref;
-            }}
-            htmlFor="outlined-age-native-simple"
-          >
-            Type
-          </InputLabel>
-          <Select
-            native
-            value={age}
-            onChange={this.handleChange('age')}
-            input={
-              <OutlinedInput name="age" labelWidth={labelWidth} id="outlined-age-native-simple" />
-            }
-          >
-            <option value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
-          </Select>
-        </FormControl>
-
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel
-            ref={(ref) => {
-              this.InputLabelRef = ref;
-            }}
-            htmlFor="outlined-age-native-simple"
-          >
-            Marque
-          </InputLabel>
-          <Select
-            native
-            value={age}
-            onChange={this.handleChange('age')}
-            input={
-              <OutlinedInput name="age" labelWidth={labelWidth} id="outlined-age-native-simple" />
-            }
-          >
-            <option value="" />
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
-          </Select>
-        </FormControl>
+				<div className={classes.main}>
+					<Card xs={12} sm={12} className={classes.cardContainer}>
+      <React.Fragment>
+      <div>
+        <h2>Je souhaite scanner grâce aux QR codes</h2>
+        <Switch checked={checkedQrCode} onChange={this.handleChangeQrCode} aria-label="Collapse" />
+        {checkedQrCode && <QrCodeScan />}
+        <h2>Je souhaite le faire manuelement</h2>
+        <form className={classes.root} autoComplete="off">
+          {/* Type de l'équipement */}
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="type-simple">Type</InputLabel>
+            <Select
+              value={this.state.equipement.type}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'type',
+                id: 'type-simple',
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {this.displayEquipmentType()}
+            </Select>
+          </FormControl>
+          {/* Marque de l'équipement */}
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="brand-simple">Marque</InputLabel>
+            <Select
+              value={this.state.equipement.brand}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'brand',
+                id: 'brand-simple',
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {this.displayEquipmentBrand()}
+            </Select>
+          </FormControl>
+          {/* Modèle de l'équipement */}
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="model-simple">Modèle</InputLabel>
+            <Select
+              value={this.state.equipement.model}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'model',
+                id: 'model-simple',
+              }}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {this.displayEquipmentModel()}
+            </Select>
+          </FormControl>
+        </form>
+        <button onClick = {() => this.submitEqpt()}> Enregistrer </button>
       </div>
+        <div>
+          <EquipmentProgram {...this.props} setDate={this.setDays} />
+        </div>
+      </React.Fragment>
+      </Card>
+				</div>
+			</div>
     );
   }
 }
 
 EquipmentInfo.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(EquipmentInfo);

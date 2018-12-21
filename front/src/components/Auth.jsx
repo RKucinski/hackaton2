@@ -11,6 +11,7 @@ import {
 	CardContent,
 	Card,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 // Css Material UI
 const styles = theme => ({
@@ -44,7 +45,7 @@ const styles = theme => ({
 		width: 100,
 		marginLeft:12,
 		marginBottom: 20,
-		backgroundColor: '#66cccc',
+		backgroundColor: '#38b301',
 	},
 	root: {
 		flexGrow: 1,
@@ -55,6 +56,9 @@ const styles = theme => ({
 	menuButton: {
 		marginLeft: -12,
 		marginRight: 20,
+	},
+	link: {
+		textDecoration: 'none',
 	},
 });
 
@@ -71,10 +75,6 @@ class Auth extends Component {
 	}
 
 	// Fonction du component
-
-	handleSubmit = () => {
-		window.location = '/profile';
-	};
 
 	onChange = e => {
 		this.setState({
@@ -135,14 +135,16 @@ class Auth extends Component {
 								/>
 							</CardContent>
 							<CardContent>
+							<Link to = '/Home' className={classes.link}>
 								<Button
 									variant="contained"
 									color="primary"
-									onClick={() => this.handleSubmit()}
 									className={classes.button}
 								>
 									Connexion
 								</Button>
+								</Link>
+								<Link to = '/signUp' className={classes.link}>
 								<Button
 									variant="contained"
 									color="primary"
@@ -151,6 +153,7 @@ class Auth extends Component {
 								>
 									M'inscrire
 								</Button>
+								</Link>
 							</CardContent>
 						</div>
 					</Card>

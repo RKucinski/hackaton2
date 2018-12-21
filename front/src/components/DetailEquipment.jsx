@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+/*eslint-disable*/
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom'
 
-class componentName extends Component {
+class DetailEquipment extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,17 +14,25 @@ class componentName extends Component {
     };
   }
 
-  handleChange = name => (event) => {
+  handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
 
   render() {
+    console.log(this.props.item)
     const { checkedB } = this.state;
     return (
       <Grid container>
         <Grid item xs={9}>
           <ListItem button>
-            <ListItemText primary="Machine à laver" />
+            <Link 
+              to={{
+                pathname: "/equipment/info",
+                state: { details: this.props.item }
+              }}
+            >
+              <ListItemText primary={this.props.item.equipmentID.type} />
+            </Link>
           </ListItem>
         </Grid>
         <Grid item xs={3}>
@@ -38,4 +48,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName;
+export default DetailEquipment;
