@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import StepperAccroche from './StepperAccroche';
-import InfoUser from './InfoUser';
+
 const styles = {
 	root: {
 		flexGrow: 1,
@@ -22,6 +22,7 @@ const styles = {
 		height: 30,
 		paddingRight: 10,
 	},
+	
 };
 
 class Accroche extends Component {
@@ -34,7 +35,6 @@ class Accroche extends Component {
 
 		return (
 			<div className={classes.root}>
-				<InfoUser />
 				<StepperAccroche />
 			</div>
 		);
