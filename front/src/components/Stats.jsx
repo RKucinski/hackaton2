@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import '../css/firstPage.css';
 
 const styles = {
 	card: {
@@ -14,7 +15,7 @@ const styles = {
 		maxWidth: 300,
 	},
 	media: {
-		height: 100,
+		height: 300,
 	},
 };
 
@@ -39,13 +40,13 @@ class Stats extends Component {
 							Impact Economique
 						</Typography>
 					</CardContent>
-					<CardMedia className={classes.media} image="https://via.placeholder.com/150" title="image" />
+					<CardMedia className={classes.media} image="https://img.lght.pics/Drmu.png" title="image" />
 					<br />
 					<Typography>
-						legend
-						<br />
-						legend
-					</Typography>
+              <span className="Conso">Consommation éléctrique</span>
+              <br />
+              <span className="Economie">Economie possible</span>
+            </Typography>
 					<br />
 				</Card>
 				<Card className={classes.card}>

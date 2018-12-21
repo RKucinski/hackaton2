@@ -39,9 +39,9 @@ class QrCodeScan extends Component {
 					onError={this.handleError}
 					resolution={this.resolution}
 					onScan={this.handleScan}
-					style={{ width: '100%' }}
+					style={{ width: '75%', display: 'block', justifyContent:'center', alignItems:'center' }}
 				/>
-				<img src={this.state.result} alt=""/>
+				<img style={{ width: '50%'}} src={this.state.result} alt=""/>
 				<button onClick={this.handlePush}
 					style={{ width: '100', marginBottom: '20', backgroundColor: '#66cccc', textDecoration: 'none' }}
 				>

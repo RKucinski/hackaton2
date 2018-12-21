@@ -15,6 +15,7 @@ import days from './dataEnDur';
 
 const styles = theme => ({
 	root: {
+		marginTop: 150,
 		width: '100%',
 		maxWidth: 360,
 		backgroundColor: theme.palette.background.paper,

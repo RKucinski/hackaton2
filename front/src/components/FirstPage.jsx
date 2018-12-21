@@ -21,7 +21,7 @@ const styles = {
 		maxWidth: 300,
 	},
 	media: {
-		height: 100,
+		height: 300,
 	},
 	cardContainerTips: {
 		marginTop: 35,
@@ -146,6 +146,7 @@ class FirstPage extends Component {
             </CardContent>
           </div>
         </Card>
+        <br/> <br/> <br/>  <br/> <br/> <br/> 
       </div>
     );
   }

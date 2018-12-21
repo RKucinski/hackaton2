@@ -11,11 +11,16 @@ import Select from '@material-ui/core/Select';
 import axios from 'axios';
 import QrCodeScan from './QrCodeScan';
 import EquipmentProgram from './EquipmentProgram';
+import {
+	TextField, Button, Snackbar, CardMedia, CardContent, Card,
+} from '@material-ui/core';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    fontSize: 12,
+    
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -109,6 +114,9 @@ class EquipmentInfo extends React.Component {
     const { checkedQrCode } = this.state;
 
     return (
+      <div className={classes.root}>
+				<div className={classes.main}>
+					<Card xs={12} sm={12} className={classes.cardContainer}>
       <React.Fragment>
       <div>
         <h2>Je souhaite scanner grâce aux QR codes</h2>
@@ -174,6 +182,9 @@ class EquipmentInfo extends React.Component {
           <EquipmentProgram {...this.props} setDate={this.setDays} />
         </div>
       </React.Fragment>
+      </Card>
+				</div>
+			</div>
     );
   }
 }
