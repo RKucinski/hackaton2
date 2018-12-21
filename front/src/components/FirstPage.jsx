@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import '../css/firstPage.css';
 
 const styles = {
   card: {
@@ -81,14 +82,14 @@ class FirstPage extends Component {
             </CardContent>
             <CardMedia
               className={classes.media}
-              image="https://via.placeholder.com/150"
+              image="https://img.lght.pics/Drmu.png"
               title="image"
             />
             <br />
             <Typography>
-              * legend
+              <span className="Conso">Consommation éléctrique</span>
               <br />
-              *legend
+              <span className="Economie">Economie possible</span>
             </Typography>
 
             <Button
