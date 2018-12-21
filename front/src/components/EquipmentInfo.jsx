@@ -8,9 +8,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import EquipmentProgram from './EquipmentProgram';
-import Axios from 'axios';
+import axios from 'axios';
 import QrCodeScan from './QrCodeScan';
+import EquipmentProgram from './EquipmentProgram';
 
 const styles = theme => ({
   root: {
@@ -30,9 +30,11 @@ class EquipmentInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: '',
-      marque: '',
-      modele: '',
+      equipement:{
+        type: '',
+        brand: '',
+        model: '',
+      },
       checkedQrCode: false,
       equipments: [],
       days: []
@@ -41,7 +43,12 @@ class EquipmentInfo extends React.Component {
   }
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ 
+      equipement:{
+        ...this.state.equipement,
+        [event.target.name]: event.target.value,
+      }
+    });
   };
 
   setDays = (newdata) => {
@@ -55,7 +62,7 @@ class EquipmentInfo extends React.Component {
   };
 
   getEquipments = () => {
-    Axios.get('/api/equipement/all').then(response => {
+    axios.get('/api/equipement/all').then(response => {
       this.setState({
         ...this.state,
         equipments: response.data,
@@ -63,9 +70,43 @@ class EquipmentInfo extends React.Component {
     });
   };
 
+  displayEquipmentType = () => {
+    let equipmentsType = [];
+    this.state.equipments.map(equipment => {
+      if(equipmentsType.indexOf(equipment.type) < 0) equipmentsType.push(equipment.type);
+    })
+    return equipmentsType.map(type => (
+      <MenuItem value={type}>{type}</MenuItem>
+    ))
+  }
+
+  displayEquipmentBrand = () => {
+    let equipmentsBrand = [];
+    this.state.equipments.map(equipment => {
+      if(equipment.type === this.state.equipement.type) equipmentsBrand.push(equipment.brand);
+    })
+    return equipmentsBrand.map(brand => (
+      <MenuItem value={brand}>{brand}</MenuItem>
+    ))
+  }
+
+  displayEquipmentModel = () => {
+    let equipmentsModel = [];
+    this.state.equipments.map(equipment => {
+      if(equipment.type === this.state.equipement.type && equipment.brand === this.state.equipement.brand) equipmentsModel.push(equipment.model);
+    })
+    return equipmentsModel.map(model => (
+      <MenuItem value={model}>{model}</MenuItem>
+    ))
+  }
+
+  submitEqpt = () => {
+    this.props.history.push('/equipments')
+  }
+
   render() {
     const { classes } = this.props;
-    const { type, marque, modele, checkedQrCode, equipments } = this.state;
+    const { checkedQrCode } = this.state;
 
     return (
       <React.Fragment>
@@ -79,7 +120,7 @@ class EquipmentInfo extends React.Component {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="type-simple">Type</InputLabel>
             <Select
-              value={type}
+              value={this.state.equipement.type}
               onChange={this.handleChange}
               inputProps={{
                 name: 'type',
@@ -89,50 +130,45 @@ class EquipmentInfo extends React.Component {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {equipments.map(equipment => (
-                <MenuItem value={equipment.type}>{equipment.type}</MenuItem>
-              ))}
+              {this.displayEquipmentType()}
             </Select>
           </FormControl>
           {/* Marque de l'équipement */}
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="marque-simple">Marque</InputLabel>
+            <InputLabel htmlFor="brand-simple">Marque</InputLabel>
             <Select
-              value={marque}
+              value={this.state.equipement.brand}
               onChange={this.handleChange}
               inputProps={{
-                name: 'marque',
-                id: 'marque-simple',
+                name: 'brand',
+                id: 'brand-simple',
               }}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {this.displayEquipmentBrand()}
             </Select>
           </FormControl>
           {/* Modèle de l'équipement */}
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="modele-simple">Modèle</InputLabel>
+            <InputLabel htmlFor="model-simple">Modèle</InputLabel>
             <Select
-              value={modele}
+              value={this.state.equipement.model}
               onChange={this.handleChange}
               inputProps={{
-                name: 'modele',
-                id: 'modele-simple',
+                name: 'model',
+                id: 'model-simple',
               }}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {this.displayEquipmentModel()}
             </Select>
           </FormControl>
         </form>
+        <button onClick = {() => this.submitEqpt()}> Enregistrer </button>
       </div>
         <div>
           <EquipmentProgram {...this.props} setDate={this.setDays} />
