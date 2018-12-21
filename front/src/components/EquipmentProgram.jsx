@@ -76,7 +76,7 @@ class FullWidthTabs extends React.Component {
   render() {
     const { classes, theme } = this.props;
     console.log(this.props)
-    const days = this.props.location.state.details.programID.days
+    const days = this.props.location.state.details.programID.days? this.props.location.state.details.programID.days: false
     console.log(days)
     return (
       <div className={classes.root}>
