@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import { withUser } from '../context/UserContext';
 import DateChoice from './DateChoice';
+import dataByDefault from './dataEnDur'
 
 
 function TabContainer({ children, dir }) {
@@ -46,8 +47,8 @@ class FullWidthTabs extends React.Component {
     this.setState({ value: index });
   };
 
-  setthesedays = (days) =>{
-    this.setState({ days: days})
+  setthesedays = (days) => {
+    this.setState({ days: days })
   }
 
   displayDays = (daysArray) => {
@@ -76,7 +77,7 @@ class FullWidthTabs extends React.Component {
   render() {
     const { classes, theme } = this.props;
     console.log(this.props)
-    const days = this.props.location.state.details.programID.days? this.props.location.state.details.programID.days: false
+    const days = (this.props.location.state.details.programID.days) ? this.props.location.state.details.programID.days : dataByDefault
     console.log(days)
     return (
       <div className={classes.root}>

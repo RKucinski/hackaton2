@@ -19,6 +19,7 @@ class DetailEquipment extends Component {
   };
 
   render() {
+    console.log(this.props.item)
     const { checkedB } = this.state;
     return (
       <Grid container>
