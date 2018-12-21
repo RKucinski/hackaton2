@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 /*eslint-disable*/
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom'
 
 class DetailEquipment extends Component {
   constructor(props) {
@@ -23,7 +24,14 @@ class DetailEquipment extends Component {
       <Grid container>
         <Grid item xs={9}>
           <ListItem button>
-            <ListItemText primary="Machine à laver" />
+            <Link 
+              to={{
+                pathname: "/equipment/info",
+                state: { details: this.props.item }
+              }}
+            >
+              <ListItemText primary={this.props.item.equipmentID.type} />
+            </Link>
           </ListItem>
         </Grid>
         <Grid item xs={3}>
