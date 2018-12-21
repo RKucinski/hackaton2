@@ -12,12 +12,14 @@ import Home from './components/Home';
 // import UserProfile from './components/UserProfile';
 // import UserParameter from './components/UserParameter';
 import EquipmentInfo from './components/EquipmentInfo';
+import UserProvider from './context/UserContext';
 
 class App extends Component {
   render() {
     return(
   <div className="App">
     <Switch>
+    <UserProvider>
       <Route exact path="/" component={Accroche} />
       <Route exact path="/auth" component={Auth} />
       <Route exact path="/signUp" component={SignUp} />
@@ -28,6 +30,7 @@ class App extends Component {
       {/* <Route exact path="/userprofile" component={UserProfile} /> */}
       {/* <Route exact path="/userparameter" component={UserParameter} /> */}
       <Route exact path="/equipment/info" component={EquipmentInfo} />
+      </UserProvider>
     </Switch>
   </div>
     )}
