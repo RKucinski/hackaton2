@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,10 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-
+import CardMedia from '@material-ui/core/CardMedia';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-
+import { Link } from 'react-router-dom';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const stepperContent = [
@@ -33,7 +34,19 @@ const stepperContent = [
   
   const styles = theme => ({
     root: {
-      maxWidth: 400,
+      margin: 'auto',
+      maxWidth: 300,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      flexGrow: 1,
+    },
+    rootBis: {
+      margin: 'auto',
+      maxWidth: 300,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
       flexGrow: 1,
     },
     header: {
@@ -48,6 +61,19 @@ const stepperContent = [
       maxWidth: 400,
       overflow: 'hidden',
       display: 'block',
+    },
+    media: {
+      marginTop: 30,
+      marginBottom: 50,
+      height: 100,
+    },
+    button: {
+      width: 100,
+      marginBottom: 20,
+      backgroundColor: '#66cccc',
+    },
+    link: {
+      textDecoration: 'none',
     },
   });
 
@@ -81,7 +107,8 @@ class StepperAccroche extends Component {
 
     return (
       <div className={classes.root}>
-        
+      <CardMedia className={classes.media} image="https://via.placeholder.com/150" title="image" />
+      <br/> 
         <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={activeStep}
@@ -118,6 +145,19 @@ class StepperAccroche extends Component {
             </Button>
           }
         />
+        <div className={classes.rootBis}>
+        {activeStep === 2 ? 
+            <Link to = '/Home' className={classes.link}>
+            <Button
+								variant="contained"
+								color="primary"
+								className={classes.button}
+							>
+								M'inscrire
+							</Button>
+              </Link> : null
+          }
+          </div>
       </div>
     );
   }

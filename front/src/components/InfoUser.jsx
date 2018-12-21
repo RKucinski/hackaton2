@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom';
 
 const styles = {
 	root: {
+		position: 'fixed',
+		top: 0,
+		width: 360,
 		flexGrow: 1,
 	},
 	grow: {
