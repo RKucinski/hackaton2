@@ -7,11 +7,13 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Timeline from '@material-ui/icons/Timeline';
+import Home from '@material-ui/icons/Home';
 import Weekend from '@material-ui/icons/Weekend';
 import Settings from '@material-ui/icons/Settings';
 import Equipments from './Equipments';
 import ParamsUser from './ParamsUser';
 import Stats from './Stats';
+import FirstPage from './FirstPage';
 
 // Declaration style MaterialUI
 
@@ -23,7 +25,8 @@ const styles = {
 
 	root: {
 		position: 'fixed',
-		bottom: 5,
+		bottom: 0,
+		heigth: 25,
 		width: 350,
 	},
 };
@@ -34,10 +37,11 @@ class BottomNav extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 0,
-			stats: true,
+			value: 1,
+			stats: false,
 			equipments: false,
 			params: false,
+			home: true,
 		};
 	}
 
@@ -54,6 +58,7 @@ class BottomNav extends Component {
 			stats: false,
 			params: false,
 			equipments: false,
+			home:false,
 			[value]: true,
 		})
 	}
@@ -65,10 +70,12 @@ class BottomNav extends Component {
 		return (
 			<div className={classes.home}>
 				{this.state.stats && <Stats />}
+				{this.state.home && <FirstPage />}
 				{this.state.equipments && <Equipments />}
 				{this.state.params && <ParamsUser />}
 				<BottomNavigation value={value} onChange={this.handleChange} showLabels className={classes.root}>
 					<BottomNavigationAction  onClick={()=>this.handleClick('stats')} label="Stats" icon={<Timeline />} />
+					<BottomNavigationAction  onClick={()=>this.handleClick('home')} label="Home" icon={<Home />} />
 					<BottomNavigationAction onClick={()=>this.handleClick('equipments')} label="Equipment" icon={<Weekend />} />
 					<BottomNavigationAction onClick={()=>this.handleClick('params')} label="Params" icon={<Settings />} />
 				</BottomNavigation>
