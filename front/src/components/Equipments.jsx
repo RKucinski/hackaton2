@@ -1,12 +1,15 @@
-/* eslint-disable */
+/* eslint-disabled */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import { List, Fab, Switch } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
 import QrCodeScan from './QrCodeScan';
+import DetailEquipment from './DetailEquipment';
+// import BottomNav from './BottomNav';
+import { withUser } from '../context/UserContext';
 
 const styles = theme => ({
 	root: {
@@ -36,28 +39,36 @@ class Equipments extends Component {
 		super(props);
 		this.state = {
 			checkedQrCode: false,
+			mapsList: [],
 		};
 	}
-
-	renderEquipments = () => {
-		axios.get();
-	};
+	
 	handleChangeQrCode = () => {
 		this.setState(state => ({ checkedQrCode: !state.checkedQrCode }));
 		// mediaStream.stop();
 	};
+	displayEquipment = (itemsArray) => {
+    let array = []
+    itemsArray.map(item => {
+      array.push(<DetailEquipment item={item} />)
+    })
+    return array
+  }
+
 
 	render() {
 		const { classes } = this.props;
 		const { checkedQrCode } = this.state;
 		return (
 			<div className={classes.root}>
-				<List component="nav">{this.renderEquipments()}</List>
-				<Fab color="primary" aria-label="Add" className={classes.fab}>
-					<Link to="/equipment/info">
-						<AddIcon />
-					</Link>
-				</Fab>
+				<List component="nav">
+          {(this.props.userData.key === "nope") ? console.log('ternaire' + this.props.userData) : this.displayEquipment(this.props.userData.equipment)}
+        </List>
+        <Fab color="primary" aria-label="Add" className={classes.fab}>
+          <Link to="/equipment/info">
+            <AddIcon />
+          </Link>
+        </Fab>
 				<Switch checked={checkedQrCode} onChange={this.handleChangeQrCode} aria-label="Collapse" />
 				{this.state.checkedQrCode && <QrCodeScan />}
 			</div>
@@ -69,4 +80,5 @@ Equipments.propTypes = {
 	classes: PropTypes.shape({}).isRequired,
 };
 
-export default withStyles(styles)(Equipments);
+export default withUser(withStyles(styles)(Equipments));
+

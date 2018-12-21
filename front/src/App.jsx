@@ -12,12 +12,14 @@ import Home from './components/Home';
 // import UserParameter from './components/UserParameter';
 import EquipmentInfo from './components/EquipmentInfo';
 import QrCodeScan from './components/QrCodeScan';
+import UserProvider from './context/UserContext';
 
 class App extends Component {
   render() {
     return(
   <div className="App">
     <Switch>
+    <UserProvider>
       <Route exact path="/" component={Accroche} />
       <Route exact path="/auth" component={Auth} />
       <Route exact path="/signUp" component={SignUp} />
@@ -28,6 +30,7 @@ class App extends Component {
       {/* <Route exact path="/userparameter" component={UserParameter} /> */}
       <Route exact path="/equipment/info" component={EquipmentInfo} />
       <Route exact path="/qrcode" component={QrCodeScan} />
+      </UserProvider>
     </Switch>
   </div>
     )}
