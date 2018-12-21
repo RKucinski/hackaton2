@@ -23,7 +23,8 @@ const styles = {
 
 	root: {
 		position: 'fixed',
-		bottom: 5,
+		bottom: 0,
+		heigth: 25,
 		width: 350,
 	},
 };

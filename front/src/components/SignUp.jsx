@@ -85,7 +85,7 @@ class SignUp extends Component {
 	};
 
 	redirect = () => {
-		this.props.history.push('/equipments')
+		this.props.history.push('/Home')
 	}
 
 	onChange = e => {
