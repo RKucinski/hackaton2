@@ -35,7 +35,7 @@ const styles = {
 		width: 100,
 		marginTop: 10,
 		marginBottom: 10,
-		backgroundColor: '#66cccc',
+		backgroundColor: '#38b301',
 	},
 };
 

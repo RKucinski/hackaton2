@@ -39,7 +39,7 @@ const styles = theme => ({
 	button: {
 		width: 100,
 		marginBottom: 20,
-		backgroundColor: '#66cccc',
+		backgroundColor: '#38b301',
 	},
 	root: {
 		flexGrow: 1,
@@ -154,7 +154,7 @@ class SignUp extends Component {
 									message={<span>{this.state.flash}</span>}
 								/>
 							</CardContent>
-							<Link to = '/Home' className={classes.link}>
+							<Link to = '/answer' className={classes.link}>
 							<Button
 								variant="contained"
 								color="primary"

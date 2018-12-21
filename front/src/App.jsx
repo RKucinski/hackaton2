@@ -31,7 +31,7 @@ class App extends Component {
       {/* <Route exact path="/userparameter" component={UserParameter} /> */}
       <Route exact path="/equipment/info" component={EquipmentInfo} />
       <Route exact path="/qrcode" component={QrCodeScan} />
-      <Route exact path="/questionnaire" component={Questionnaire} />
+      <Route exact path="/answer" component={Questionnaire} />
       </UserProvider>
     </Switch>
   </div>

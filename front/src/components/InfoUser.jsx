@@ -30,7 +30,7 @@ const styles = {
 	bodyBar: {
 		height: 30,
 		paddingRight: 10,
-		backgroundColor: '#66cccc',
+		backgroundColor: '#38b301',
 	},
 	link: {
 		textDecoration: 'none',
@@ -41,7 +41,7 @@ class InfoUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			nameUser: 'Mr Test',
+			nameUser: 'Stephane Dupont',
 		};
 	}
 
@@ -57,7 +57,7 @@ class InfoUser extends Component {
 						</Typography>
 						<Link to="/auth" className={classes.link}>
 							<Button color="inherit" className={classes.menuButton}>
-								Login
+								Déconnexion
 							</Button>
 						</Link>
 					</Toolbar>

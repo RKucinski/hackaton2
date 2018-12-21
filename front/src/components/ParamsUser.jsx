@@ -29,7 +29,7 @@ const styles = theme => ({
 	},
 	button: {
 		minWidth: 1,
-		backgroundColor: '#66cccc',
+		backgroundColor: '#38b301',
 	},
 	cardContainer: {
 		marginTop: 25,
@@ -55,7 +55,7 @@ class ParamsUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: 'test@gmail.com',
+			email: 'stephane@gmail.com',
 			password: '********',
 			emailTMP: '',
 			passwordTMP: '',
@@ -170,7 +170,7 @@ class ParamsUser extends Component {
 							Repasser le test
 						</Typography>
 						<CardContent>
-            <Link to="/Answer" className={classes.link}>
+            <Link to="/answer" className={classes.link}>
 							<Button
 								variant="contained"
 								color="primary"

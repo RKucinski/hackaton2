@@ -18,7 +18,7 @@ const styles = theme => ({
   },
   fab: {
     margin: theme.spacing.unit,
-    backgroundColor: '#66cccc',
+    backgroundColor: '#38b301',
   },
   extendedIcon: {
     position: 'fixed',
@@ -29,7 +29,7 @@ const styles = theme => ({
     position: 'fixed',
     top: 190,
     minWidth: 30,
-    backgroundColor: '#66cccc',
+    backgroundColor: '#38b301',
   },
 });
 
