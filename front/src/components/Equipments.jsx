@@ -59,16 +59,16 @@ class Equipments extends Component {
 						? console.log(`ternaire${this.props.userData}`)
 						: this.displayEquipment(this.props.userData.equipment)}
 				</List>
+				<Link
+					to={{
+						pathname: "/equipment/info",
+						state: { details: days }
+					}}>
 				<Fab color="primary" aria-label="Add" className={classes.fab}>
-					<Link
-						to={{
-							pathname: "/equipment/info",
-							state: { details: days }
-						}}>
-						<AddIcon />
-					</Link>
+					<AddIcon />
 				</Fab>
-			</div>
+				</Link>
+			</div >
 		);
 	}
 }
